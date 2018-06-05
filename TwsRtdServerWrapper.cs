@@ -66,6 +66,7 @@ namespace TwsRtdServer
 
             if (mktDataRequest != null && tickTypeStr != null)
             {
+                mktDataRequest.SetMktDataTickValue(tickTypeStr, value); // add June 5
                 switch (tickTypeStr)
                 {
                         // assigning implied vol, delta, opt price, pv dividend, gamma, vega, theta and und price
@@ -108,6 +109,29 @@ namespace TwsRtdServer
                         GetTopicAndAddUpdate(TwsRtdServerData.MODEL_VEGA, mktDataRequest, value.getVega());
                         GetTopicAndAddUpdate(TwsRtdServerData.MODEL_THETA, mktDataRequest, value.getTheta());
                         GetTopicAndAddUpdate(TwsRtdServerData.MODEL_UND_PRICE, mktDataRequest, value.getUndPrice());
+                        break;
+                    case TwsRtdServerData.DELAYED_BID_OPTION_COMPUTATION: // add June 5
+                        //GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_OPTION_COMPUTATION, mktDataRequest, value);
+                        
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_IMPLIED_VOL, mktDataRequest, value.getImpliedVolatility());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_DELTA, mktDataRequest, value.getDelta());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_OPT_PRICE, mktDataRequest, value.getOptPrice());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_PV_DIVIDEND, mktDataRequest, value.getPvDividend());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_GAMMA, mktDataRequest, value.getGamma());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_VEGA, mktDataRequest, value.getVega());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_THETA, mktDataRequest, value.getTheta());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_BID_UND_PRICE, mktDataRequest, value.getUndPrice());
+                        break;
+                    case TwsRtdServerData.DELAYED_MODEL_OPTION_COMPUTATION:
+                        //GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_OPTION_COMPUTATION, mktDataRequest, value);
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_IMPLIED_VOL, mktDataRequest, value.getImpliedVolatility());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_DELTA, mktDataRequest, value.getDelta());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_OPT_PRICE, mktDataRequest, value.getOptPrice());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_PV_DIVIDEND, mktDataRequest, value.getPvDividend());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_GAMMA, mktDataRequest, value.getGamma());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_VEGA, mktDataRequest, value.getVega());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_THETA, mktDataRequest, value.getTheta());
+                        GetTopicAndAddUpdate(TwsRtdServerData.DELAYED_MODEL_UND_PRICE, mktDataRequest, value.getUndPrice());
                         break;
                 }
             }

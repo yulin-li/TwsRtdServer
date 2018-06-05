@@ -33,6 +33,10 @@ namespace TwsRtdServer
         private TwsRtdServerData.OptionComputationData m_lastOptionComputation = new TwsRtdServerData.OptionComputationData();
         private TwsRtdServerData.OptionComputationData m_modelOptionComputation = new TwsRtdServerData.OptionComputationData();
 
+        // delayed option ticks
+        private TwsRtdServerData.OptionComputationData m_delayedBidOptionComputation = new TwsRtdServerData.OptionComputationData(); // add June 5
+        private TwsRtdServerData.OptionComputationData m_delayedModelOptionComputation = new TwsRtdServerData.OptionComputationData();
+
         // add generic ticks values
         private int m_genTickAuctionVolume = 0;
         private int m_genTickAuctionImbalance = 0;
@@ -292,6 +296,14 @@ namespace TwsRtdServer
                     break;
                 case TwsRtdServerData.DELAYED_LAST_TIMESTAMP:
                     m_delayed_lastTimestamp = (string)value;
+                    break;
+
+                //delayed option ticks
+                case TwsRtdServerData.DELAYED_BID_OPTION_COMPUTATION: // add June 5
+                    m_delayedBidOptionComputation = (TwsRtdServerData.OptionComputationData)value;
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_OPTION_COMPUTATION:
+                    m_delayedModelOptionComputation = (TwsRtdServerData.OptionComputationData)value;
                     break;
             }
         }
@@ -586,6 +598,56 @@ namespace TwsRtdServer
                     break;
                 case TwsRtdServerData.DELAYED_LAST_TIMESTAMP:
                     value = m_delayed_lastTimestamp;
+                    break;
+
+                // delayed option ticks
+                case TwsRtdServerData.DELAYED_BID_IMPLIED_VOL: // add June 5
+                    value = m_delayedBidOptionComputation.getImpliedVolatility();
+                    break;
+                case TwsRtdServerData.DELAYED_BID_DELTA:
+                    value = m_delayedBidOptionComputation.getDelta();
+                    break;
+                case TwsRtdServerData.DELAYED_BID_OPT_PRICE:
+                    value = m_delayedBidOptionComputation.getOptPrice();
+                    break;
+                case TwsRtdServerData.DELAYED_BID_PV_DIVIDEND:
+                    value = m_delayedBidOptionComputation.getPvDividend();
+                    break;
+                case TwsRtdServerData.DELAYED_BID_GAMMA:
+                    value = m_delayedBidOptionComputation.getGamma();
+                    break;
+                case TwsRtdServerData.DELAYED_BID_VEGA:
+                    value = m_delayedBidOptionComputation.getVega();
+                    break;
+                case TwsRtdServerData.DELAYED_BID_THETA:
+                    value = m_delayedBidOptionComputation.getTheta();
+                    break;
+                case TwsRtdServerData.DELAYED_BID_UND_PRICE:
+                    value = m_delayedBidOptionComputation.getUndPrice();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_IMPLIED_VOL:
+                    value = m_delayedModelOptionComputation.getImpliedVolatility();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_DELTA:
+                    value = m_delayedModelOptionComputation.getDelta();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_OPT_PRICE:
+                    value = m_delayedModelOptionComputation.getOptPrice();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_PV_DIVIDEND:
+                    value = m_delayedModelOptionComputation.getPvDividend();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_GAMMA:
+                    value = m_delayedModelOptionComputation.getGamma();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_VEGA:
+                    value = m_delayedModelOptionComputation.getVega();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_THETA:
+                    value = m_delayedModelOptionComputation.getTheta();
+                    break;
+                case TwsRtdServerData.DELAYED_MODEL_UND_PRICE:
+                    value = m_delayedModelOptionComputation.getUndPrice();
                     break;
 
             }

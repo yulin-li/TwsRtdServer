@@ -163,6 +163,8 @@ namespace TwsRtdServer{
         public const string DELAYED_CLOSE = "DELAYEDCLOSE";
         public const string DELAYED_OPEN = "DELAYEDOPEN";
         public const string DELAYED_LAST_TIMESTAMP = "DELAYEDLASTTIMESTAMP";
+        public const string DELAYED_BID_OPTION_COMPUTATION = "DELAYEDBIDOPTIONCOMPUTATION";
+        public const string DELAYED_MODEL_OPTION_COMPUTATION = "DELAYEDMODELOPTIONCOMPUTATION"; // add June 5
 
         // Option Topics
         public const string BID_IMPLIED_VOL = "BIDIMPLIEDVOL";
@@ -200,6 +202,25 @@ namespace TwsRtdServer{
         public const string MODEL_VEGA = "MODELVEGA";
         public const string MODEL_THETA = "MODELTHETA";
         public const string MODEL_UND_PRICE = "MODELUNDPRICE";
+
+        // Delayed Option Topics
+        public const string DELAYED_BID_IMPLIED_VOL = "DELAYEDBIDIMPLIEDVOL"; // add June 5
+        public const string DELAYED_BID_DELTA = "DELAYEDBIDDELTA";
+        public const string DELAYED_BID_OPT_PRICE = "DELAYEDBIDOPTPRICE";
+        public const string DELAYED_BID_PV_DIVIDEND = "DELAYEDBIDPVDIVIDEND";
+        public const string DELAYED_BID_GAMMA = "DELAYEDBIDGAMMA";
+        public const string DELAYED_BID_VEGA = "DELAYEDBIDVEGA";
+        public const string DELAYED_BID_THETA = "DELAYEDBIDTHETA";
+        public const string DELAYED_BID_UND_PRICE = "DELAYEDBIDUNDPRICE";
+
+        public const string DELAYED_MODEL_IMPLIED_VOL = "DELAYEDMODELIMPLIEDVOL";
+        public const string DELAYED_MODEL_DELTA = "DELAYEDMODELDELTA";
+        public const string DELAYED_MODEL_OPT_PRICE = "DELAYEDMODELOPTPRICE";
+        public const string DELAYED_MODEL_PV_DIVIDEND = "DELAYEDMODELPVDIVIDEND";
+        public const string DELAYED_MODEL_GAMMA = "DELAYEDMODELGAMMA";
+        public const string DELAYED_MODEL_VEGA = "DELAYEDMODELVEGA";
+        public const string DELAYED_MODEL_THETA = "DELAYEDMODELTHETA";
+        public const string DELAYED_MODEL_UND_PRICE = "DELAYEDMODELUNDPRICE";
 
         // mktData request related
         public const string DEFAULT_SECTYPE = "STK";
@@ -270,13 +291,23 @@ namespace TwsRtdServer{
 
             // delayed topics
             DELAYED_BID, DELAYED_ASK, DELAYED_LAST, DELAYED_BID_SIZE, DELAYED_ASK_SIZE, DELAYED_LAST_SIZE, 
-            DELAYED_HIGH, DELAYED_LOW, DELAYED_VOLUME, DELAYED_CLOSE, DELAYED_OPEN, DELAYED_LAST_TIMESTAMP
+            DELAYED_HIGH, DELAYED_LOW, DELAYED_VOLUME, DELAYED_CLOSE, DELAYED_OPEN, DELAYED_LAST_TIMESTAMP,
+
+            // delayed option topics
+            DELAYED_BID_IMPLIED_VOL, DELAYED_BID_DELTA, DELAYED_BID_OPT_PRICE, DELAYED_BID_PV_DIVIDEND, DELAYED_BID_GAMMA, DELAYED_BID_VEGA, DELAYED_BID_THETA, DELAYED_BID_UND_PRICE, // add June 5
+            DELAYED_MODEL_IMPLIED_VOL, DELAYED_MODEL_DELTA, DELAYED_MODEL_OPT_PRICE, DELAYED_MODEL_PV_DIVIDEND,
+            DELAYED_MODEL_GAMMA, DELAYED_MODEL_VEGA, DELAYED_MODEL_THETA, DELAYED_MODEL_UND_PRICE,
         };
 
         private static string[] m_allowedDelayedTopics = new string[]{ 
             // delayed topics
             DELAYED_BID, DELAYED_ASK, DELAYED_LAST, DELAYED_BID_SIZE, DELAYED_ASK_SIZE, DELAYED_LAST_SIZE, 
             DELAYED_HIGH, DELAYED_LOW, DELAYED_VOLUME, DELAYED_CLOSE, DELAYED_OPEN,
+
+            // delayed option computation
+            DELAYED_BID_IMPLIED_VOL, DELAYED_BID_DELTA, DELAYED_BID_OPT_PRICE, DELAYED_BID_PV_DIVIDEND, DELAYED_BID_GAMMA, DELAYED_BID_VEGA, DELAYED_BID_THETA, DELAYED_BID_UND_PRICE, // add June 5
+            DELAYED_MODEL_IMPLIED_VOL, DELAYED_MODEL_DELTA, DELAYED_MODEL_OPT_PRICE, DELAYED_MODEL_PV_DIVIDEND,
+            DELAYED_MODEL_GAMMA, DELAYED_MODEL_VEGA, DELAYED_MODEL_THETA, DELAYED_MODEL_UND_PRICE,
 
             // generic tick types that are provided when delayed data is enabled
             // 232
@@ -356,6 +387,8 @@ namespace TwsRtdServer{
             { 74, DELAYED_VOLUME },
             { 75, DELAYED_CLOSE },
             { 76, DELAYED_OPEN },
+            { 80, DELAYED_BID_OPTION_COMPUTATION},
+            { 83, DELAYED_MODEL_OPTION_COMPUTATION}, // add June 5
             { 88, DELAYED_LAST_TIMESTAMP },
        
             { 78, GEN_TICK_CREDITMAN_MARK_PRICE },
